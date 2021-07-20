@@ -1,0 +1,8 @@
+.tab-content > .box {
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+}
+
+.tabs:not(:last-child) {
+    margin-bottom: 0px;
+}
