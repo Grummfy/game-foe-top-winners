@@ -24,6 +24,7 @@
         :buckets="winners.buckets"
         :splitter="winners.splitter"
         :splitterValue="winners.splitterValue"
+        @validated="pointValidated"
       />
       <div v-else class="notification is-warning is-light">
         Merci de choisir les gagnants et le répartiteur.
@@ -31,7 +32,11 @@
     </Tab>
 
     <Tab :active="currentTab == 'messages'">
-      <MessageGenerator />
+      <MessageGenerator
+        :buckets="winners.buckets"
+        :splitters="splitters"
+        :winners="winners.winners"
+      />
     </Tab>
   </div>
 </template>
@@ -60,10 +65,9 @@ export default {
       items: {},
       numberOfMember: 3,
       total: 0,
-      repartition: function() {
-          return [new Array(this.numberOfMember)].fill(0);
-      },
+      repartition: new Array(this.numberOfMember).fill(0),
       winners: {},
+      splitters: {},
     }
   },
   methods: {
@@ -80,7 +84,13 @@ export default {
         this.total * 0.2,
       ]
 
-      console.debug(event)
+      this.winners = {...event}
+      this.currentTab = 'points';
+    },
+    pointValidated: function(event) {
+      this.currentTab = 'messages';
+      this.splitters = event.splitter;
+      this.winners.buckets = event.buckets;
     }
   },
   components: {

@@ -1,5 +1,5 @@
 <template>
-<div>
+<div  class="table-container">
     <h3 class="title is-3">Gagants</h3>
     <h5 class="subtitle is-5">Choix des gagnants et du répartiteur</h5>
 
@@ -19,10 +19,10 @@
                     v-for="index in numberOfMember" :key="index" 
                     type="radio"
                     class="radio"
-                    name="winners[ index ]"
+                    :name="'winners[' + (index - 1)  + ']'"
                     :value="item.name"
-                    v-model="winners[ index ]"
-                    :disabled="isPossibleWinner(index)"
+                    v-model="winners[ index - 1 ]"
+                    :disabled="!isPossibleWinner(index - 1, item.name)"
                 />
             </div>
         </td>
@@ -34,7 +34,7 @@
                     name="splitter"
                     :value="item.name"
                     v-model="splitter"
-                    :disabled="isPossibleSplitter(item)" />
+                    :disabled="isPossibleSplitter(item.name)" />
             </div>
         </td>
       </tr>
@@ -69,12 +69,7 @@ export default {
   data: function() {
     return {
       splitter: "",
-      winners: function() {
-          return [new Array(this.numberOfMember)].fill('');
-      },
-      buckets: function() {
-          return [new Array(this.numberOfMember)].fill([]);
-      },
+      winners: new Array(this.numberOfMember).fill(''),
       splitterValue: 0,
     }
   },
@@ -85,20 +80,19 @@ export default {
   },
   emmits: ['splitted', 'update:total'],
   methods: {
-    isPossibleSplitter: function(item) {
-        return this.winners.find(winner => winner.name == item.name) == undefined;
+    isPossibleSplitter: function(itemName) {
+        return this.winners.find(winner => winner == itemName) != undefined;
     },
-    isPossibleWinner: function(index) {
-        const currentName = this.winners[ index ].name;
-
+    isPossibleWinner: function(index, itemName) {
         // winner can't be the
-        if (this.splitter == currentName) {
+        if (this.splitter == itemName) {
             return false;
         }
 
-        // already checked in other winners
+        // avoid that current line is already in one of the other winner
         for (const [i, winner] of this.winners.entries()) {
-            if (i != index && currentName == winner.name) {
+            // avoid current one & compare to current winner, if already in it
+            if (i != index && itemName == winner) {
                 return false;
             }
         }
@@ -120,7 +114,7 @@ export default {
       delete (availableValues[this.winners[2]]);
 
       // second, remove the splitter
-      this.splitterValue = availableValues[this.splitter];
+      this.splitterValue = availableValues[this.splitter].value;
       
       delete (availableValues[this.splitter]);
 
@@ -134,43 +128,52 @@ export default {
        https://fr.wikipedia.org/wiki/Probl%C3%A8me_de_bin_packing
       */
 
-      [3, 2, 1].forEach(function (rep, index)
+    // first add elements with big value
+     let initA = [];
+     for (let i = this.numberOfMember; i > 0; i--) {
+        initA.push(i);
+     }
+
+      initA.forEach(function (rep, index)
       {
         while (rep > 0)
         {
           let firstElement = availableValuesAry.shift();
           if (firstElement) {
+            // push object
             resolved[ index ].push(firstElement[1]);
           }
           rep--;
         }  
       });
       
+      // then fill with what's left
       let cpt = 0;
       let i = null;
       while ((i = availableValuesAry.shift()) != undefined)
       {
-        resolved[ cpt % 3 ].push(i[1]);
+        resolved[ cpt % this.numberOfMember ].push(i[1]);
         cpt++;
       }
 
       // rearrange it to a table rows
+      // resolved 0 = first column, 1 = second columns BUT table arre line oriented
       let buckets = [];
-      for (i of [0, 1, 2]) {
-        for (const index in resolved[ i ]) {
-          if (buckets[ index ] == undefined) {
-            buckets[ index ] = [];
+      for (let col = 0; col < this.numberOfMember; col++) {
+        for (const line in resolved[ col ]) {
+          // if the line doesn't exist yet, we create it
+          if (buckets[ line ] == undefined) {
+            buckets[ line ] = (new Array(this.numberOfMember)).fill({name:"", value: 0});
           }
-          buckets[ index ].push(resolved[ i ][ index ]);
+          buckets[ line ][ col ] = resolved[ col ][ line ];
         }
       }
 
-      this.buckets = buckets;
-      this.$emmits('update:total', this.totalToSplit);
-      this.$emmits('splitted', {
+      this.$emit('update:total', this.totalToSplit);
+      this.$emit('splitted', {
           splitter: this.splitter,
           winners: this.winners,
-          buckets: this.buckets,
+          buckets: buckets,
           splitterValue: this.splitterValue,
       });
     },
