@@ -8,13 +8,6 @@ app.config.errorHandler = function (err, vm, info) {
     console.log([err, vm, info])
 }
 */
-app.config.configureWebpack = {
-    devtool: 'source-map',
-}
-
-if (process.env.CI) {
-    app.config.publicPath = '/game-foe-top-winners/';
-}
 
 app.mount('#app')
 
