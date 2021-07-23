@@ -75,8 +75,6 @@ Total 0
 
 
 <script>
-import Participant from '../Datas/Participant';
-
 export default {
   name: 'MessageGenerator',
   data: function(){
@@ -131,27 +129,36 @@ export default {
         return matched[3] + '/' + matched[2];
       }
 
-      return "" + this.period.getDay() + '/' + (this.period.getMonth() + 1);
+      return "" + this.period.getDate() + '/' + (this.period.getMonth() + 1);
     },
     endOfPeriod: function() {
       let dateOfPeriod = (typeof this.period == 'string') ? new Date(this.period) : this.period;
       dateOfPeriod.setDate(dateOfPeriod.getDate() + 13);
 
-      return "" + dateOfPeriod.getDay() + '/' + (dateOfPeriod.getMonth() + 1);
+      // avoid any stupide timezone stuff
+      dateOfPeriod.setHours(12);
+
+      return "" + dateOfPeriod.getDate() + '/' + (dateOfPeriod.getMonth() + 1);
     },
     startOfNextPeriod: function() {
       let dateOfPeriod = (typeof this.period == 'string') ? new Date(this.period) : this.period;
       // next monday
       dateOfPeriod.setDate(dateOfPeriod.getDate() + 14);
 
-      return "" + dateOfPeriod.getDay() + '/' + (dateOfPeriod.getMonth() + 1);
+      // avoid any stupide timezone stuff
+      dateOfPeriod.setHours(12);
+
+      return "" + dateOfPeriod.getDate() + '/' + (dateOfPeriod.getMonth() + 1);
     },
     endOfNextPeriod: function() {
       let dateOfPeriod = (typeof this.period == 'string') ? new Date(this.period) : this.period;
       // next monday then jump
       dateOfPeriod.setDate(dateOfPeriod.getDate() + 14 + 13);
 
-      return "" + dateOfPeriod.getDay() + '/' + (dateOfPeriod.getMonth() + 1);
+      // avoid any stupide timezone stuff
+      dateOfPeriod.setHours(12);
+
+      return "" + dateOfPeriod.getDate() + '/' + (dateOfPeriod.getMonth() + 1);
     }
   }
 }
