@@ -12,7 +12,7 @@
 
       <h5 class="subtitle is-5">Récompenses</h5>
 
-      <pre class="content" @click="copyToClipboard">
+      <pre class="content" @click="copyToClipboard" @touchend="copyToClipboard">
 Bonsoir à tous, 
 Les attributions des dons pour les meilleurs progressions en points, sur la semaine du {{ startOfPeriod }} au {{ endOfPeriod }}, sont les suivants :
 <template v-for="winner in winners" :key="winner">
@@ -33,7 +33,7 @@ Ps: comme c’est un don, merci de reverser le bénéfice sur le même gm au cas
       </pre>
 
       <h5 class="subtitle is-5">Nouveau sujet top message</h5>
-      <pre class="content" @click="copyToClipboard">
+      <pre class="content" @click="copyToClipboard" @touchend="copyToClipboard">
 Suite au classement de la meilleure progression, nous récompensons le top 3 de la meilleure progression ***toutes les 2 semaines***
 Comment ?
 Sur ce fil, chaque 2 semaines, les promesses aux dons seront ouvertes et chaque joueur pourra écrire son nom et le nombre de PF qu’il souhaite donner.  Ce don n’est absolument pas obligatoire et seuls ceux qui le souhaitent participent 😊 Mais ne sauront pris en compte comme participants que ceux participants à la cagnotte.
@@ -63,7 +63,7 @@ Tout redevient normal en période 3, vous pouvez de nouveau gagner la récompens
 
 Les membres du conseil de Calaadan renoncent à leur droit de gagner la cagnotte, merci à eux 😉. Les membres du conseil sont Bobbie joe, Elemental, Chokkobons, Christophe, Quiétus et Fred.
       </pre>
-      <pre class="content" @click="copyToClipboard">
+      <pre class="content" @click="copyToClipboard" @touchend="copyToClipboard">
 Cagnotte de la période du {{ startOfNextPeriod }} au {{ endOfNextPeriod }} (cette semaine {{ winners.join(', ') }} ne sont pas éligibles aux gains mais rien ne vous empêche d'être dans le top 3 quand même ;))
 
 Promesses de dons (Nom suivi de pf):
