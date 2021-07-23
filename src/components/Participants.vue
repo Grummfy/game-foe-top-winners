@@ -49,7 +49,8 @@ export default {
         }
 
         let line = regex.exec(element.trim());
-        if (line[1] && line[2]) {
+        // avoir empty line, and total line
+        if (line && line[1] && line[2] && line[1].trim().toLowerCase() != 'total') {
           items.push({
             name: line[1].trim(),
             value: parseInt(line[2]),
