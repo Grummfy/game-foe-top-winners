@@ -75,6 +75,8 @@ Total 0
 
 
 <script>
+import Participant from '../Datas/Participant';
+
 export default {
   name: 'MessageGenerator',
   data: function(){

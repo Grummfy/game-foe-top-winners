@@ -19,6 +19,8 @@
 </template>
 
 <script>
+import Participant from '../Datas/Participant';
+
 export default {
   name: "Participants",
   data: function () {
@@ -51,10 +53,7 @@ export default {
         let line = regex.exec(element.trim());
         // avoir empty line, and total line
         if (line && line[1] && line[2] && line[1].trim().toLowerCase() != 'total') {
-          items.push({
-            name: line[1].trim(),
-            value: parseInt(line[2]),
-          });
+          items.push(new Participant(line[1].trim(), parseInt(line[2])));
         }
       }
 

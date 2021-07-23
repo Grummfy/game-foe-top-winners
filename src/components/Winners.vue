@@ -64,6 +64,8 @@
 </template>
 
 <script>
+import Participant from '../Datas/Participant';
+
 export default {
   name: 'Winners',
   data: function() {
@@ -163,7 +165,7 @@ export default {
         for (const line in resolved[ col ]) {
           // if the line doesn't exist yet, we create it
           if (buckets[ line ] == undefined) {
-            buckets[ line ] = (new Array(this.numberOfMember)).fill({name:"", value: 0});
+            buckets[ line ] = (new Array(this.numberOfMember)).fill(new Participant("", 0));
           }
           buckets[ line ][ col ] = resolved[ col ][ line ];
         }

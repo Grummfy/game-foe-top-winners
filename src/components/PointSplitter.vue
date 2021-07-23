@@ -81,6 +81,8 @@
 </template>
 
 <script>
+import Participant from '../Datas/Participant';
+
 export default {
   name: 'PointSplitter',
   data: function() {
@@ -135,11 +137,9 @@ export default {
       this.moveToDirection(column, line, item, -1)
     },
     moveToDirection: function(column, line, item, direction) {
-      const emptyValue = {name:"", value: 0}
-
       // 1. remove element and fill with and empty hole
       // remove existing element and replace it with an empty one to avoid emptyness and keep everything coherent
-      this.bucketValues[ line ].splice(column, 1, emptyValue)
+      this.bucketValues[ line ].splice(column, 1, new Participant("", 0))
 
       // remove hole if exist
       if (this.bucketValues[ line + 1 ] && this.bucketValues[ line + 1 ][ column ].value != 0) {
@@ -148,7 +148,7 @@ export default {
           this.bucketValues[ i ][ column ] = this.bucketValues[ i + 1 ][ column ];
         }
 
-        this.bucketValues[ totalLines - 1 ][ column ] = emptyValue
+        this.bucketValues[ totalLines - 1 ][ column ] = new Participant("", 0);
       }
 
       // 2. set value at new place
@@ -158,7 +158,7 @@ export default {
       // create the new line if not found
       if (newLine == -1) {
         newLine = this.bucketValues.length;
-        this.bucketValues.push((new Array(this.numberOfMember)).fill(emptyValue));
+        this.bucketValues.push((new Array(this.numberOfMember)).fill(new Participant("", 0)));
       }
 
       // and replace
