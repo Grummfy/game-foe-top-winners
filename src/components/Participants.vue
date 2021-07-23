@@ -23,8 +23,7 @@ export default {
   name: "Participants",
   data: function () {
     return {
-      values:
-        "Quietus 100\nHonorius   40\nD.Willy 40\nLilliann 100\nCirius 40\nJijy 80\n\nLaure 50\nElemental 100\nKarelcote 40\n",
+      values: "", // "Quietus 100\nHonorius   40\nD.Willy 40\nLilliann 100\nCirius 40\nJijy 80\n\nLaure 50\nElemental 100\nKarelcote 40\n",
     };
   },
   props: {
