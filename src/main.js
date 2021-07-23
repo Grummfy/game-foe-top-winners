@@ -12,6 +12,10 @@ app.config.configureWebpack = {
     devtool: 'source-map',
 }
 
+if (process.env.CI) {
+    app.config.publicPath = '/game-foe-top-winners/';
+}
+
 app.mount('#app')
 
 // load css for icons
