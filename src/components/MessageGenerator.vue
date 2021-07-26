@@ -12,63 +12,76 @@
 
       <h5 class="subtitle is-5">Récompenses</h5>
 
-      <pre class="content" @click="copyToClipboard" @touchend="copyToClipboard">
-Bonsoir à tous, 
-Les attributions des dons pour les meilleurs progressions en points, sur la semaine du {{ startOfPeriod }} au {{ endOfPeriod }}, sont les suivants :
+      <div class="content">
+        <blockquote @click="copyToClipboard" @touchend="copyToClipboard">
+Bonsoir à tous,<br />
+Les attributions des dons pour les meilleurs progressions en points, sur la semaine du {{ startOfPeriod }} au {{ endOfPeriod }}, sont les suivants :<br />
 <template v-for="winner in winners" :key="winner">
-  * {{ winner }}
+  * {{ winner }}<br />
 </template>
-
-Merci à tous trois de lier votre GM dans ce fil (⚠ pas un gm 1.9 ⚠, pour la facilité le suivit) afin que les promesses de dons vous soient déposées. Les gens vont quitter le fil comme on fait pour les bb gm.
-
+<br />
+Merci à tous trois de lier votre GM dans ce fil (⚠ pas un gm 1.9 ⚠, pour la facilité le suivit) afin que les promesses de dons vous soient déposées. Les gens vont quitter le fil comme on fait pour les bb gm.<br />
+<br />
 <template v-for="(winner, column) in winners" :key="column">
-  {{ column }}. Doivent déposer sur le gm de {{ winner }} :
+  {{ column + 1 }}. Doivent déposer sur le gm de {{ winner }} :<br />
   <template v-for="bucket in bucketValues[ column ]" :key="bucket.name">
-    {{ bucket.name }} {{ bucket.value }}
+    {{ bucket.name }} {{ bucket.value }}<br />
   </template>
-    {{ splitters[0].splitter }} {{ splitters[0].values[ column ] }}
+    {{ splitters[0].splitter }} {{ splitters[0].values[ column ] }}<br />
+<br />
 </template>
 
 Ps: comme c’est un don, merci de reverser le bénéfice sur le même gm au cas où vous prenez une place à pf sur le gm. Je compte sur votre honnêteté!
-      </pre>
+        </blockquote>
+      </div>
 
       <h5 class="subtitle is-5">Nouveau sujet top message</h5>
-      <pre class="content" @click="copyToClipboard" @touchend="copyToClipboard">
-Suite au classement de la meilleure progression, nous récompensons le top 3 de la meilleure progression ***toutes les 2 semaines***
-Comment ?
-Sur ce fil, chaque 2 semaines, les promesses aux dons seront ouvertes et chaque joueur pourra écrire son nom et le nombre de PF qu’il souhaite donner.  Ce don n’est absolument pas obligatoire et seuls ceux qui le souhaitent participent 😊 Mais ne sauront pris en compte comme participants que ceux participants à la cagnotte.
-Une promesse de don = une inscription à la cagnotte    
-
-Le total de ces promesses constituera la cagnotte qui sera répartie entre les trois vainqueurs de la façon suivante :  
-P1 : 50% des dons 🎁🎁🎁   
-P2 : 30% des dons🎁🎁   
-P3 : 20% des dons🎁      
-
-Les gagnants pourront alors indiquer dans le fil sur quel GM ils souhaitent que la récompense soit déposée. Pas d’inquiétude ! pas de calcul de répartition ou de pourcentage à faire ! J’indiquerai à chacun le lundi à qui il doit donner ses PF pour que chaque gagnant touche le bon montant de la récompense 😊       
-
-Mais il est donc important d’attendre mes indications avant de déposer les PF, sinon il nous sera impossible d’obtenir la répartition 50, 30, 20 !      
-
-Il sera impossible de gagner deux fois d’affiliées :     
-Exemple:
-si vous êtes 3ième la periode 1
-Et 3ième la période 2.
-Vous ne toucherez pas de récompense. Celle ci sera attribuée au 4ième.
-
-Autre exemple:   
-Vous êtes 3ième la période 1   
-Premier la période 2   
-Vous ne toucherez pas de récompenses   
-
-Tout redevient normal en période 3, vous pouvez de nouveau gagner la récompense
-
+      <div class="content">
+        <blockquote @click="copyToClipboard" @touchend="copyToClipboard">
+          Cagnotte du {{ startOfNextPeriod }} au {{ endOfNextPeriod }}
+        </blockquote>
+      </div>
+      <div class="content">
+        <blockquote @click="copyToClipboard" @touchend="copyToClipboard">
+Suite au classement de la meilleure progression, nous récompensons le top 3 de la meilleure progression ***toutes les 2 semaines***<br />
+Comment ?<br />
+Sur ce fil, chaque 2 semaines, les promesses aux dons seront ouvertes et chaque joueur pourra écrire son nom et le nombre de PF qu’il souhaite donner.  Ce don n’est absolument pas obligatoire et seuls ceux qui le souhaitent participent 😊 Mais ne sauront pris en compte comme participants que ceux participants à la cagnotte.<br />
+Une promesse de don = une inscription à la cagnotte, avant la clôture.<br />
+<br />
+Le total de ces promesses constituera la cagnotte qui sera répartie entre les trois vainqueurs de la façon suivante :<br />
+P1 : 50% des dons 🎁🎁🎁<br />
+P2 : 30% des dons🎁🎁<br />
+P3 : 20% des dons🎁<br />
+<br />
+Les gagnants pourront alors indiquer dans le fil sur quel GM ils souhaitent que la récompense soit déposée. Pas d’inquiétude ! pas de calcul de répartition ou de pourcentage à faire ! J’indiquerai à chacun le lundi à qui il doit donner ses PF pour que chaque gagnant touche le bon montant de la récompense 😊<br />
+<br />
+Mais il est donc important d’attendre mes indications avant de déposer les PF, sinon il nous sera impossible d’obtenir la répartition 50, 30, 20 !<br />
+<br />
+Il sera impossible de gagner deux fois d’affiliées :<br />
+Exemple:<br />
+si vous êtes 3ième la periode 1<br />
+Et 3ième la période 2.<br />
+Vous ne toucherez pas de récompense. Celle ci sera attribuée au 4ième.<br />
+<br />
+Autre exemple:<br />
+Vous êtes 3ième la période 1<br />
+Premier la période 2<br />
+Vous ne toucherez pas de récompenses<br />
+<br />
+Tout redevient normal en période 3, vous pouvez de nouveau gagner la récompense<br />
+<br />
 Les membres du conseil de Calaadan renoncent à leur droit de gagner la cagnotte, merci à eux 😉. Les membres du conseil sont Bobbie joe, Elemental, Chokkobons, Christophe, Quiétus et Fred.
-      </pre>
-      <pre class="content" @click="copyToClipboard" @touchend="copyToClipboard">
-Cagnotte de la période du {{ startOfNextPeriod }} au {{ endOfNextPeriod }} (cette semaine {{ winners.join(', ') }} ne sont pas éligibles aux gains mais rien ne vous empêche d'être dans le top 3 quand même ;))
-
-Promesses de dons (Nom suivi de pf):
+        </blockquote>
+      </div>
+      <div class="content">
+        <blockquote @click="copyToClipboard" @touchend="copyToClipboard">
+Cagnotte de la période du {{ startOfNextPeriod }} au {{ endOfNextPeriod }} (cette semaine {{ winners.join(', ') }} ne sont pas éligibles aux gains mais rien ne vous empêche d'être dans le top 3 quand même ;))<br />
+<br />
+Promesses de dons (Nom suivi de pf):<br />
+<br />
 Total 0
-      </pre>
+        </blockquote>
+      </div>
     </div>
   </div>
 </template>
