@@ -12,7 +12,14 @@
       </tr>
       <tr v-for="item in items" :key="item.name">
         <td>{{ item.name }}</td>
-        <td>{{ item.value }}</td>
+        <td>
+          {{ item.value }}
+          <span class="tag is-light is-rounded is-success" v-if="item.isAuto">
+            <span class="icon is-large">
+              <span class="mdi mdi-autorenew" aria-hidden="true"></span>
+            </span>
+          </span>
+        </td>
         <td>
             <div class="control">
                 <input
@@ -165,7 +172,7 @@ export default {
         for (const line in resolved[ col ]) {
           // if the line doesn't exist yet, we create it
           if (buckets[ line ] == undefined) {
-            buckets[ line ] = (new Array(this.numberOfMember)).fill(new Participant("", 0));
+            buckets[ line ] = (new Array(this.numberOfMember)).fill(new Participant("", 0, false));
           }
           buckets[ line ][ col ] = resolved[ col ][ line ];
         }

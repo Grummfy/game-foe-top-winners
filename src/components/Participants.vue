@@ -4,7 +4,7 @@
 
     <div class="field">
       <label class="label">
-        Valeurs a répartir :
+        Valeurs a répartir : <button class="button is-warning is-small" @click="testValue">test text</button>
       </label>
       <div class="control">
         <textarea class="textarea" v-model="values" style="height: 100%"></textarea>
@@ -25,7 +25,7 @@ export default {
   name: "Participants",
   data: function () {
     return {
-      values: "", // "Quietus 100\nHonorius   40\nD.Willy 40\nLilliann 100\nCirius 40\nJijy 80\n\nLaure 50\nElemental 100\nKarelcote 40\n",
+      values: "",
     };
   },
   props: {
@@ -41,7 +41,7 @@ export default {
 
       // split line into element and then get values
       let elements = this.values.trim().split("\n");
-      const regex = new RegExp("^(.+)\\s+([0-9]+)$");
+      const regex = new RegExp("^(.+)\\s+([0-9]+)(\\s+\\(auto\\){1})?$");
 
       let items = [];
       for (let element of elements) {
@@ -51,9 +51,10 @@ export default {
         }
 
         let line = regex.exec(element.trim());
+        console.log(line);
         // avoir empty line, and total line
         if (line && line[1] && line[2] && line[1].trim().toLowerCase() != 'total') {
-          items.push(new Participant(line[1].trim(), parseInt(line[2])));
+          items.push(new Participant(line[1].trim(), parseInt(line[2]), line[3] !== undefined));
         }
       }
 
@@ -67,6 +68,10 @@ export default {
 
       this.$emit('extracted');
     },
+    testValue: function()
+    {
+      this.values = "blabla foo bar lorem ipsum : HBHJQJBQBHB\n\nQuietus 100\nHonorius   40\nD.Willy 40 (auto)\nLilliann 100   	(auto)\nCirius 40\nJijy : 80\n\nLaure 50\nElemental 100\nKarelcote 40\nFoo 40\nBar 40\nTotal 500"
+    }
   },
 };
 </script>

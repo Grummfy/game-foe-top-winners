@@ -36,7 +36,11 @@
         :buckets="winners.buckets"
         :splitters="splitters"
         :winners="winners.winners"
+        v-if="winners && winners.buckets && winners.buckets.length > 0"
       />
+      <div v-else class="notification is-warning is-light">
+        Merci de choisir de répartir les points avant.
+      </div>
     </Tab>
   </div>
 </template>

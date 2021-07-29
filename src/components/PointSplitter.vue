@@ -31,6 +31,11 @@
                   </span>
                 </button>
                 {{ col.name }}
+                <span class="tag is-light is-rounded is-success" v-if="col.isAuto">
+                  <span class="icon is-large">
+                    <span class="mdi mdi-autorenew" aria-hidden="true"></span>
+                  </span>
+                </span>
               </template>
             </td>
             <td>
@@ -139,7 +144,7 @@ export default {
     moveToDirection: function(column, line, item, direction) {
       // 1. remove element and fill with and empty hole
       // remove existing element and replace it with an empty one to avoid emptyness and keep everything coherent
-      this.bucketValues[ line ].splice(column, 1, new Participant("", 0))
+      this.bucketValues[ line ].splice(column, 1, new Participant("", 0, false))
 
       // remove hole if exist
       if (this.bucketValues[ line + 1 ] && this.bucketValues[ line + 1 ][ column ].value != 0) {
@@ -148,7 +153,7 @@ export default {
           this.bucketValues[ i ][ column ] = this.bucketValues[ i + 1 ][ column ];
         }
 
-        this.bucketValues[ totalLines - 1 ][ column ] = new Participant("", 0);
+        this.bucketValues[ totalLines - 1 ][ column ] = new Participant("", 0, false);
       }
 
       // 2. set value at new place
@@ -158,7 +163,7 @@ export default {
       // create the new line if not found
       if (newLine == -1) {
         newLine = this.bucketValues.length;
-        this.bucketValues.push((new Array(this.numberOfMember)).fill(new Participant("", 0)));
+        this.bucketValues.push((new Array(this.numberOfMember)).fill(new Participant("", 0, false)));
       }
 
       // and replace

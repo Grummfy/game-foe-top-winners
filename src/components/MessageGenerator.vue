@@ -14,13 +14,18 @@
 
       <div class="content">
         <blockquote @click="copyToClipboard" @touchend="copyToClipboard">
+          🥇🥈🥉 Répartition cagnotte des gagnants
+        </blockquote>
+      </div>
+      <div class="content">
+        <blockquote @click="copyToClipboard" @touchend="copyToClipboard">
 Bonsoir à tous,<br />
 Les attributions des dons pour les meilleurs progressions en points, sur la semaine du {{ startOfPeriod }} au {{ endOfPeriod }}, sont les suivants :<br />
 <template v-for="winner in winners" :key="winner">
   * {{ winner }}<br />
 </template>
 <br />
-Merci à tous trois de lier votre GM dans ce fil (⚠ pas un gm 1.9 ⚠, pour la facilité le suivit) afin que les promesses de dons vous soient déposées. Les gens vont quitter le fil comme on fait pour les bb gm.<br />
+Merci à tous trois de lier votre GM dans ce fil (⚠ pas un gm 1.9 ⚠, pour la facilité le suivit) afin que les promesses de dons vous soient déposées.<br />
 <br />
 <template v-for="(winner, column) in winners" :key="column">
   {{ column + 1 }}. Doivent déposer sur le gm de {{ winner }} :<br />
@@ -38,7 +43,7 @@ Ps: comme c’est un don, merci de reverser le bénéfice sur le même gm au cas
       <h5 class="subtitle is-5">Nouveau sujet top message</h5>
       <div class="content">
         <blockquote @click="copyToClipboard" @touchend="copyToClipboard">
-          Cagnotte du {{ startOfNextPeriod }} au {{ endOfNextPeriod }}
+          🥇 Cagnotte du {{ startOfNextPeriod }} au {{ endOfNextPeriod }}
         </blockquote>
       </div>
       <div class="content">
@@ -78,8 +83,11 @@ Les membres du conseil de Calaadan renoncent à leur droit de gagner la cagnotte
 Cagnotte de la période du {{ startOfNextPeriod }} au {{ endOfNextPeriod }} (cette semaine {{ winners.join(', ') }} ne sont pas éligibles aux gains mais rien ne vous empêche d'être dans le top 3 quand même ;))<br />
 <br />
 Promesses de dons (Nom suivi de pf):<br />
+<template v-for="participant in autoParticipants" :key="participant.name">
+  {{ participant.name }} {{ participant.value }} (auto)<br />
+</template>
 <br />
-Total 0
+Total {{ sumAutoParticipants }}
         </blockquote>
       </div>
     </div>
@@ -94,10 +102,13 @@ export default {
     return {
       period: '',
       bucketValues: [],
+      autoParticipants: [],
+      sumAutoParticipants: 0,
     }
   },
   mounted() {
     let newBuckets = [];
+    let autoParticipants = [];
     for(let bucket of this.buckets) {
       for(let column in bucket) {
         let col = bucket[ column ];
@@ -106,9 +117,16 @@ export default {
             newBuckets[ column ] = [];
           }
           newBuckets[ column ].push({...col});
+
+          if (col.isAuto) {
+            autoParticipants.push(col)
+          }
         }
       }
     }
+
+    this.autoParticipants = autoParticipants;
+    this.sumAutoParticipants = autoParticipants.reduce((sum, participant) => sum += participant.value, 0);
     this.bucketValues = newBuckets;
   },
   props: {

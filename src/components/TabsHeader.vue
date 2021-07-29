@@ -6,7 +6,9 @@
           <span class="icon is-large">
             <span class="mdi" :class="tab.icon" aria-hidden="true"></span>
           </span>
-          {{ tab.title }}
+          <span class="is-hidden-touch">
+            {{ tab.title }}
+          </span>
         </a>
       </li>
     </ul>
