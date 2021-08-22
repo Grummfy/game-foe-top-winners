@@ -36,6 +36,7 @@
         :buckets="winners.buckets"
         :splitters="splitters"
         :winners="winners.winners"
+        :items="items"
         v-if="winners && winners.buckets && winners.buckets.length > 0"
       />
       <div v-else class="notification is-warning is-light">

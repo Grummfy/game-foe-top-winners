@@ -96,6 +96,8 @@ Total {{ sumAutoParticipants }}
 
 
 <script>
+import Participant from '../Datas/Participant';
+
 export default {
   name: 'MessageGenerator',
   data: function(){
@@ -125,6 +127,11 @@ export default {
       }
     }
 
+    if (this.items[ this.splitters[0].splitter ].isAuto) {
+      let val = new Participant(this.splitters[0].splitter, this.splitters[0].values.reduce((sum, val) => sum += val, 0));
+      autoParticipants.push(val)
+    }
+
     this.autoParticipants = autoParticipants;
     this.sumAutoParticipants = autoParticipants.reduce((sum, participant) => sum += participant.value, 0);
     this.bucketValues = newBuckets;
@@ -133,6 +140,7 @@ export default {
     winners: Array,
     buckets: Array,
     splitters: Object,
+    items: Array,
   },
   methods: {
     copyToClipboard: function(event) {

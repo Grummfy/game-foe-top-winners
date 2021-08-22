@@ -147,7 +147,7 @@ export default {
       this.bucketValues[ line ].splice(column, 1, new Participant("", 0, false))
 
       // remove hole if exist
-      if (this.bucketValues[ line + 1 ] && this.bucketValues[ line + 1 ][ column ].value != 0) {
+      if (this.bucketValues[ line + 1 ] && this.bucketValues[ line + 1 ][ column ].value !== 0) {
         const totalLines = this.bucketValues.length;
         for (let i = line; i < totalLines && this.bucketValues[ i + 1 ]; i++) {
           this.bucketValues[ i ][ column ] = this.bucketValues[ i + 1 ][ column ];
@@ -161,7 +161,7 @@ export default {
       let newLine = this.bucketValues.findIndex((element) => element[ column + direction ].value === 0)
 
       // create the new line if not found
-      if (newLine == -1) {
+      if (newLine === -1) {
         newLine = this.bucketValues.length;
         this.bucketValues.push((new Array(this.numberOfMember)).fill(new Participant("", 0, false)));
       }

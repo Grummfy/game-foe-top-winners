@@ -90,18 +90,18 @@ export default {
   emmits: ['splitted', 'update:total'],
   methods: {
     isPossibleSplitter: function(itemName) {
-        return this.winners.find(winner => winner == itemName) != undefined;
+        return this.winners.find(winner => winner === itemName) !== undefined;
     },
     isPossibleWinner: function(index, itemName) {
         // winner can't be the
-        if (this.splitter == itemName) {
+        if (this.splitter === itemName) {
             return false;
         }
 
         // avoid that current line is already in one of the other winner
         for (const [i, winner] of this.winners.entries()) {
             // avoid current one & compare to current winner, if already in it
-            if (i != index && itemName == winner) {
+            if (i !== index && itemName === winner) {
                 return false;
             }
         }
@@ -112,7 +112,7 @@ export default {
       // init winners
       let resolved = [];
       for (let index = 0; index < this.numberOfMember; index++) {
-        let winIndex = index == 0 ? (this.numberOfMember - 1) : (index - 1);
+        let winIndex = index === 0 ? (this.numberOfMember - 1) : (index - 1);
         resolved.push([ this.items[ this.winners[ winIndex ] ] ])
       }
       
@@ -124,7 +124,7 @@ export default {
 
       // second, remove the splitter
       this.splitterValue = availableValues[this.splitter].value;
-      
+
       delete (availableValues[this.splitter]);
 
       // then finalise the basic distribution
@@ -159,7 +159,7 @@ export default {
       // then fill with what's left
       let cpt = 0;
       let i = null;
-      while ((i = availableValuesAry.shift()) != undefined)
+      while ((i = availableValuesAry.shift()) !== undefined)
       {
         resolved[ cpt % this.numberOfMember ].push(i[1]);
         cpt++;
@@ -171,7 +171,7 @@ export default {
       for (let col = 0; col < this.numberOfMember; col++) {
         for (const line in resolved[ col ]) {
           // if the line doesn't exist yet, we create it
-          if (buckets[ line ] == undefined) {
+          if (buckets[ line ] === undefined) {
             buckets[ line ] = (new Array(this.numberOfMember)).fill(new Participant("", 0, false));
           }
           buckets[ line ][ col ] = resolved[ col ][ line ];
