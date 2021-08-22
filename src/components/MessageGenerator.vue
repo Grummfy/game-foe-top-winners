@@ -13,9 +13,7 @@
       <h5 class="subtitle is-5">Récompenses</h5>
 
       <div class="content">
-        <blockquote @click="copyToClipboard" @touchend="copyToClipboard">
-          🥇🥈🥉 Répartition cagnotte des gagnants
-        </blockquote>
+        <blockquote @click="copyToClipboard" @touchend="copyToClipboard">🥇🥈🥉Répartition cagnotte des gagnants</blockquote>
       </div>
       <div class="content">
         <blockquote @click="copyToClipboard" @touchend="copyToClipboard">
@@ -42,9 +40,7 @@ Ps: comme c’est un don, merci de reverser le bénéfice sur le même gm au cas
 
       <h5 class="subtitle is-5">Nouveau sujet top message</h5>
       <div class="content">
-        <blockquote @click="copyToClipboard" @touchend="copyToClipboard">
-          🥇 Cagnotte du {{ startOfNextPeriod }} au {{ endOfNextPeriod }}
-        </blockquote>
+        <blockquote @click="copyToClipboard" @touchend="copyToClipboard">🥇Cagnotte du {{ startOfNextPeriod }} au {{ endOfNextPeriod }}</blockquote>
       </div>
       <div class="content">
         <blockquote @click="copyToClipboard" @touchend="copyToClipboard">
