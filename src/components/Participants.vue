@@ -41,7 +41,7 @@ export default {
 
       // split line into element and then get values
       let elements = this.values.trim().split("\n");
-      const regex = new RegExp("^(.+)\\s+([0-9]+)(\\s*\\(auto\\){1})?$");
+      const regex = new RegExp("^(.+)\\s+:?([0-9]+)(\\s*\\(auto\\){1})?$");
 
       let items = [];
       for (let element of elements) {
@@ -70,7 +70,7 @@ export default {
     },
     testValue: function()
     {
-      this.values = "blabla foo bar lorem ipsum : HBHJQJBQBHB\n\nQuietus 100\nHonorius   40\nD.Willy 40 (auto)\nLilliann 100   	(auto)\nCirius 40\nJijy : 80(auto)\n\nLaure 50\nElemental 100\nKarelcote 40\nFoo 40\nBar 40\nTotal 500"
+      this.values = "blabla foo bar lorem ipsum : HBHJQJBQBHB\n\nQuietus 100\nHonorius   40\nD.Willy 40 (auto)\nLilliann 100   	(auto)\nCirius 40\nBidule's 456 : 40\nBob :10\nJijy : 80(auto)\n\nLaure 50\nElemental 100\nKarelcote 40\nFoo 40\nBar 40\nTotal 500"
     }
   },
 };
