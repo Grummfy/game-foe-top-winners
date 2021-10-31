@@ -13,7 +13,9 @@
       <h5 class="subtitle is-5">Récompenses</h5>
 
       <div class="content">
-        <blockquote @click="copyToClipboard" @touchend="copyToClipboard">🥇🥈🥉Répartition cagnotte des gagnants</blockquote>
+        <blockquote @click="copyToClipboard" @touchend="copyToClipboard">
+🥇🥈🥉Répartition cagnotte des gagnants
+</blockquote>
       </div>
       <div class="content">
         <blockquote @click="copyToClipboard" @touchend="copyToClipboard">
@@ -40,7 +42,9 @@ Ps: comme c’est un don, merci de reverser le bénéfice sur le même gm au cas
 
       <h5 class="subtitle is-5">Nouveau sujet top message</h5>
       <div class="content">
-        <blockquote @click="copyToClipboard" @touchend="copyToClipboard">🥇Cagnotte du {{ startOfNextPeriod }} au {{ endOfNextPeriod }}</blockquote>
+        <blockquote @click="copyToClipboard" @touchend="copyToClipboard">
+🥇Cagnotte du {{ startOfNextPeriod }} au {{ endOfNextPeriod }}
+</blockquote>
       </div>
       <div class="content">
         <blockquote @click="copyToClipboard" @touchend="copyToClipboard">
@@ -71,16 +75,16 @@ Vous ne toucherez pas de récompenses<br />
 <br />
 Tout redevient normal en période 3, vous pouvez de nouveau gagner la récompense<br />
 <br />
-Les membres du conseil de Calaadan renoncent à leur droit de gagner la cagnotte, merci à eux 😉. Les membres du conseil sont Bobbie joe, Elemental, Chokkobons, Christophe, Quiétus et Fred.
+Les membres du conseil de Calaadan renoncent à leur droit de gagner la cagnotte, merci à eux 😉. Les membres du conseil sont Bobbie joe, Elemental, Christophe, Quiétus, Fred et Honorius.
         </blockquote>
       </div>
       <div class="content">
         <blockquote @click="copyToClipboard" @touchend="copyToClipboard">
 Cagnotte de la période du {{ startOfNextPeriod }} au {{ endOfNextPeriod }} (cette semaine {{ winners.join(', ') }} ne sont pas éligibles aux gains mais rien ne vous empêche d'être dans le top 3 quand même ;))<br />
 <br />
-Promesses de dons (Nom suivi de pf):<br />
+Promesses de dons (Nom suivi de pf, suivit de '(auto)' si vous voulez un report automatique):<br />
 <template v-for="participant in autoParticipants" :key="participant.name">
-  {{ participant.name }} {{ participant.value }} (auto)<br />
+{{ participant.name }} {{ participant.value }} (auto)<br />
 </template>
 <br />
 Total {{ sumAutoParticipants }}
