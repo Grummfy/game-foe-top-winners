@@ -40,8 +40,14 @@ export default {
       }
 
       // split line into element and then get values
-      let elements = this.values.trim().split("\n");
-      const regex = new RegExp("^(.+)\\s+:?([0-9]+)(\\s*\\(auto\\){1})?$");
+      let elements = this.values
+          // remove blanks
+          .trim()
+          // remove ':' to avoid any strange behaviour
+          .replaceAll(':', ' ')
+          // split line by line
+          .split("\n");
+      const regex = new RegExp("^(.+)\\s+:?([0-9]+)(\\s*\\(\\s?auto\\s?\\){1})?$");
 
       let items = [];
       for (let element of elements) {
@@ -55,6 +61,10 @@ export default {
         // avoir empty line, and total line
         if (line && line[1] && line[2] && line[1].trim().toLowerCase() !== 'total') {
           items.push(new Participant(line[1].trim(), parseInt(line[2]), line[3] !== undefined));
+        }
+        else
+        {
+          console.log('skip line : ' + element);
         }
       }
 
@@ -70,7 +80,7 @@ export default {
     },
     testValue: function()
     {
-      this.values = "blabla foo bar lorem ipsum : HBHJQJBQBHB\n\nQuietus 100\nHonorius   40\nD.Willy 40 (auto)\nLilliann 100   	(auto)\nCirius 40\nBidule's 456 : 40\nBob :10\nJijy : 80(auto)\n\nLaure 50\nElemental 100\nKarelcote 40\nFoo 40\nBar 40\nTotal 500"
+      this.values = "blabla foo bar lorem ipsum : HBHJQJBQBHB\n\nQuietus 100\nHonorius   40\nD.Willy 40 (auto)\nLilliann 100   	(auto)\nCirius 40\nBidule's 456 : 40\nBob :10\nJijy : 80(auto)\n\nLaure 50\nElemental 100\nKarelcote 40\nFoo 40\nBar 40\n Euric 200 ( auto )\nmam's62 (30)\nTotal 730"
     }
   },
 };

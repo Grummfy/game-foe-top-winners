@@ -1,7 +1,7 @@
 <template>
 <div  class="table-container">
     <h3 class="title is-3">Gagants</h3>
-    <h5 class="subtitle is-5">Choix des gagnants et du répartiteur</h5>
+    <h5 class="subtitle is-5">Choix des gagnants ({{numberOfMember}}) et du répartiteur parmis {{numberOfParticipants}}</h5>
 
     <table class="table is-stripped is-fullwidth">
       <tr>
@@ -195,6 +195,9 @@ export default {
 
       return Object.values(this.items).reduce((acc, item) => acc = parseInt(acc) + item.value, 0)
     },
+		numberOfParticipants: function()	{
+			return Object.keys(this.items).length;
+		}
   }
 }
 </script>

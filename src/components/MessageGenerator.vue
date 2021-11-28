@@ -21,18 +21,15 @@
         <blockquote @click="copyToClipboard" @touchend="copyToClipboard">
 Bonsoir à tous,<br />
 Les attributions des dons pour les meilleurs progressions en points, sur la semaine du {{ startOfPeriod }} au {{ endOfPeriod }}, sont les suivants :<br />
-<template v-for="winner in winners" :key="winner">
-  * {{ winner }}<br />
-</template>
-<br />
+<template v-for="winner in winners" :key="winner">* {{ winner }}<br /></template>
 Merci à tous trois de lier votre GM dans ce fil (⚠ pas un gm 1.9 ⚠, pour la facilité le suivit) afin que les promesses de dons vous soient déposées.<br />
 <br />
 <template v-for="(winner, column) in winners" :key="column">
-  {{ column + 1 }}. Doivent déposer sur le gm de {{ winner }} :<br />
-  <template v-for="bucket in bucketValues[ column ]" :key="bucket.name">
-    {{ bucket.name }} {{ bucket.value }}<br />
-  </template>
-    {{ splitters[0].splitter }} {{ splitters[0].values[ column ] }}<br />
+{{ column + 1 }}. Doivent déposer sur le gm de {{ winner }} :<br />
+<template v-for="bucket in bucketValues[ column ]" :key="bucket.name">
+{{ bucket.name }} {{ bucket.value }}<br />
+</template>
+{{ splitters[0].splitter }} {{ splitters[0].values[ column ] }}<br />
 <br />
 </template>
 
@@ -69,9 +66,7 @@ Et 3ième la période 2.<br />
 Vous ne toucherez pas de récompense. Celle ci sera attribuée au 4ième.<br />
 <br />
 Autre exemple:<br />
-Vous êtes 3ième la période 1<br />
-Premier la période 2<br />
-Vous ne toucherez pas de récompenses<br />
+Vous êtes 3ième la période 1, premier la période 2, ==> Vous ne toucherez pas de récompenses<br />
 <br />
 Tout redevient normal en période 3, vous pouvez de nouveau gagner la récompense<br />
 <br />
@@ -83,9 +78,7 @@ Les membres du conseil de Calaadan renoncent à leur droit de gagner la cagnotte
 Cagnotte de la période du {{ startOfNextPeriod }} au {{ endOfNextPeriod }} (cette semaine {{ winners.join(', ') }} ne sont pas éligibles aux gains mais rien ne vous empêche d'être dans le top 3 quand même ;))<br />
 <br />
 Promesses de dons (Nom suivi de pf, suivit de '(auto)' si vous voulez un report automatique):<br />
-<template v-for="participant in autoParticipants" :key="participant.name">
-{{ participant.name }} {{ participant.value }} (auto)<br />
-</template>
+<template v-for="participant in autoParticipants" :key="participant.name">{{ participant.name }} {{ participant.value }} (auto)<br /></template>
 <br />
 Total {{ sumAutoParticipants }}
         </blockquote>
