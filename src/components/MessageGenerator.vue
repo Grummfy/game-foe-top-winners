@@ -131,7 +131,9 @@ export default {
   methods: {
     copyToClipboard: function(event) {
       let element = event.target;
-      if (document.body.createTextRange) {
+
+			// select text to mark the copy
+      if (element.createTextRange) {
         const range = document.body.createTextRange();
         range.moveToElementText(element);
         range.select();
@@ -144,7 +146,9 @@ export default {
         selection.addRange(range);
       }
 
-      document.execCommand('copy');
+			// legacy copy :  document.execCommand('copy');
+			const cb = navigator.clipboard;
+			cb.writeText(element.innerText);
     }
   },
   computed: {
