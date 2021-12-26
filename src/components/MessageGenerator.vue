@@ -9,26 +9,33 @@
     </div>
 
     <div v-if="period != ''">
+			<h5 class="subtitle is-5">Message global</h5>
+			<div class="content">
+				<blockquote @click="copyToClipboard" @touchend="copyToClipboard">
+					Le calcul de la répartition des gains a eu lieux, merci aux participants!<br />
+					Vous trouverez {{ winners.length }} fils (un par gagnant) au sein de la guilde reprenant la répartition des gains.
+					<br />
+					Vous devez juste vérifier dans quel fil vous devez vous acquitter du don.</blockquote>
+			</div>
 
       <h5 class="subtitle is-5">Récompenses</h5>
 
 <template v-for="(winner, column) in winners" :key="column">
 				<div class="content">
-					<blockquote @click="copyToClipboard" @touchend="copyToClipboard">🥇🥈🥉Répartition cagnotte {{ column + 1 }}° gagnant</blockquote>
+					<blockquote @click="copyToClipboard" @touchend="copyToClipboard">🥇🥈🥉Répartition cagnotte {{ winner }}</blockquote>
 				</div>
 				<div class="content">
 					<blockquote @click="copyToClipboard" @touchend="copyToClipboard">
-Bonsoir à toutes et tous,<br />
-Les attributions des dons pour les meilleurs progressions en points, sur la semaine du {{ startOfPeriod }} au {{ endOfPeriod }}, pour le {{ column + 1 }}° gagnant : {{ winner }}
-Merci de lier un GM dans ce fil (⚠ pas un gm 1.9 ⚠, pour la facilité le suivit) afin que les promesses de dons vous soient déposées.<br />
-<br />
-Doivent déposer sur le gm de {{ winner }} :<br />
+						Bonsoir à toutes et tous,<br />
+						Les attributions des dons pour les meilleurs progressions en points, sur la semaine du {{ startOfPeriod }} au {{ endOfPeriod }}, pour le {{ column + 1 }}° gagnant : {{ winner }}
+						Merci de lier un GM dans ce fil (⚠ pas un gm 1.9 ⚠, pour la facilité le suivit) afin que les promesses de dons vous soient déposées.<br />
+						Ps: comme c’est un don, merci de reverser le bénéfice sur le même gm au cas où vous prenez une place à pf sur le gm. Je compte sur votre honnêteté!
+					</blockquote>
+					<blockquote @click="copyToClipboard" @touchend="copyToClipboard">Doivent déposer sur le gm de {{ winner }} :<br />
 <template v-for="bucket in bucketValues[ column ]" :key="bucket.name">
 {{ bucket.name }} {{ bucket.value }}<br />
 </template>
 {{ splitters[0].splitter }} {{ splitters[0].values[ column ] }}
-<br />
-Ps: comme c’est un don, merci de reverser le bénéfice sur le même gm au cas où vous prenez une place à pf sur le gm. Je compte sur votre honnêteté!
 					</blockquote>
 				</div>
 	</template>
