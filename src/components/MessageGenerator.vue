@@ -15,6 +15,10 @@
 					Le calcul de la répartition des gains a eu lieux, merci aux participants!<br />
 					Vous trouverez {{ winners.length }} fils (un par gagnant) au sein de la guilde reprenant la répartition des gains.
 					<br />
+					<template v-for="(winner, column) in winners" :key="column">
+						{{ column + 1 }}. {{winner}} : <template v-for="bucket in bucketValues[ column ]" :key="bucket.name">{{ bucket.name }}, </template><br />
+					</template>
+					<br />
 					Vous devez juste vérifier dans quel fil vous devez vous acquitter du don.</blockquote>
 			</div>
 
@@ -27,8 +31,9 @@
 				<div class="content">
 					<blockquote @click="copyToClipboard" @touchend="copyToClipboard">
 						Bonsoir à toutes et tous,<br />
-						Les attributions des dons pour les meilleurs progressions en points, sur la semaine du {{ startOfPeriod }} au {{ endOfPeriod }}, pour le {{ column + 1 }}° gagnant : {{ winner }}
+						Les attributions des dons pour les meilleurs progressions en points, sur la semaine du {{ startOfPeriod }} au {{ endOfPeriod }}, pour le {{ column + 1 }}° gagnant : {{ winner }}<br />
 						Merci de lier un GM dans ce fil (⚠ pas un gm 1.9 ⚠, pour la facilité le suivit) afin que les promesses de dons vous soient déposées.<br />
+						<br />
 						Ps: comme c’est un don, merci de reverser le bénéfice sur le même gm au cas où vous prenez une place à pf sur le gm. Je compte sur votre honnêteté!
 					</blockquote>
 					<blockquote @click="copyToClipboard" @touchend="copyToClipboard">Doivent déposer sur le gm de {{ winner }} :<br />
