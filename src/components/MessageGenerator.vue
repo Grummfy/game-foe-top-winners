@@ -13,7 +13,7 @@
 			<div class="content">
 				<blockquote @click="copyToClipboard" @touchend="copyToClipboard">
 					Le calcul de la répartition des gains a eu lieux, merci aux participants!<br />
-					Vous trouverez {{ winners.length }} fils (un par gagnant) au sein de la guilde reprenant la répartition des gains.
+					Vous trouverez {{ winners.length }} fils (un par gagnant) en social reprenant la répartition des gains.
 					<br />
 					<template v-for="(winner, column) in winners" :key="column">
 						{{ column + 1 }}. {{winner}} : <template v-for="bucket in bucketValues[ column ]" :key="bucket.name">{{ bucket.name }}, </template><br />
@@ -76,7 +76,7 @@ Vous êtes 3ième la période 1, premier la période 2, ==> Vous ne toucherez pa
 <br />
 Tout redevient normal en période 3, vous pouvez de nouveau gagner la récompense<br />
 <br />
-Les membres du conseil de Calaadan renoncent à leur droit de gagner la cagnotte, merci à eux 😉. Les membres du conseil sont Bobbie joe, Elemental, Christophe, Quiétus, Fred et Honorius.
+Les membres du conseil de Calaadan renoncent à leur droit de gagner la cagnotte, merci à eux 😉. Les membres du conseil sont Bobbie joe, Elemental, Christophe, Quiétus, Fred, Honorius, Euric et Fragmasterfrogs.
         </blockquote>
       </div>
       <div class="content">
