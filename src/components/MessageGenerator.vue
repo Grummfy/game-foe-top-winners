@@ -13,13 +13,13 @@
 			<div class="content">
 				<blockquote @click="copyToClipboard" @touchend="copyToClipboard">
 					Le calcul de la répartition des gains a eu lieux, merci aux participants!<br />
-					Vous trouverez {{ winners.length }} fils (un par gagnant) en social reprenant la répartition des gains.
+					Vous trouverez chacun votre propre fil en social, reprenant la répartition des gains.
 					<br />
 					<template v-for="(winner, column) in winners" :key="column">
 						{{ column + 1 }}. {{winner}} : <template v-for="bucket in bucketValues[ column ]" :key="bucket.name">{{ bucket.name }}, </template><br />
 					</template>
 					<br />
-					Vous devez juste vérifier dans quel fil vous devez vous acquitter du don.</blockquote>
+					Vous pouvez vérifier que vous y avez bien accès et ainsi vous acquitter de votre don.</blockquote>
 			</div>
 
       <h5 class="subtitle is-5">Récompenses</h5>
