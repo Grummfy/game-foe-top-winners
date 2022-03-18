@@ -125,6 +125,19 @@ export default {
       }
     }
 
+		// sort for easy usage
+		for (let b of newBuckets) {
+			b.sort(function(a, b) {
+				if (a.name < b.name) {
+					return -1;
+				}
+				if (a.name > b.name) {
+					return 1;
+				}
+				return 0;
+			});
+		}
+
     if (this.items[ this.splitters[0].splitter ].isAuto) {
       let val = new Participant(this.splitters[0].splitter, this.splitters[0].values.reduce((sum, val) => sum += val, 0));
       autoParticipants.push(val)
