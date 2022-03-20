@@ -76,7 +76,7 @@ Vous êtes 3ième la période 1, premier la période 2, ==> Vous ne toucherez pa
 <br />
 Tout redevient normal en période 3, vous pouvez de nouveau gagner la récompense<br />
 <br />
-Les membres du conseil de Calaadan renoncent à leur droit de gagner la cagnotte, merci à eux 😉. Les membres du conseil sont Bobbie joe, Elemental, Christophe, Quiétus, Fred, Honorius, Euric, Fragmasterfrogs, Elpoireau et Jguy.
+Les membres du conseil de Calaadan renoncent à leur droit de gagner la cagnotte, merci à eux 😉. Les membres du conseil sont Bobbie joe, Elemental, Christophe, Quiétus, Fred, Honorius, Euric, Elpoireau et Jguy.
         </blockquote>
       </div>
       <div class="content">
